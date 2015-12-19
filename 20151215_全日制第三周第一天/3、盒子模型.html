@@ -26,8 +26,8 @@
             border: 10px solid #08BECE;
             overflow: hidden;
 
-            opacity: 0.111111;
-            filter: alpha(opacity=11.1111); /*在IE下设置元素的透明度不是使用opacity,而是使用filter*/
+            /*opacity: 0.111111;*/
+            /*filter: alpha(opacity=11.1111); /!*在IE下设置元素的透明度不是使用opacity,而是使用filter*!/*/
         }
     </style>
 </head>
@@ -77,8 +77,8 @@
     //2、通过 window.getComputedStyle 获取所有经过浏览器计算的样式(只要的你的元素在浏览器加载的时候渲染过,能够在页面中展示,那么当前元素的所有的样式都是经过浏览器计算的,哪怕你没有写)
     //window.getComputedStyle(要操作的元素,元素的伪类(JS一般不用->null)) ->这个获取到的结果是一个对象数据类型的值(CSSStyleDeclaration内置类的一个实例),里面包含了我们所有经过浏览器计算过的样式属性名和属性值
     //我们想获取其中某一个样式的值,只需要对象.属性名即可->获取的结果根据自身的情况是带这个单位的
-    //var obj = window.getComputedStyle(oDiv, null);
-    //console.log(obj.height);
+    //    var obj = window.getComputedStyle(oDiv, null);
+    //    console.log(obj.height);
 
     //虽然上述的方法很好用,但是在IE6~8下不兼容 ->currentStyle
     //var obj = oDiv.currentStyle;
@@ -87,8 +87,8 @@
     /*
      * getCss:获取指定元素的某一个样式属性的值
      * @parameter
-     *    curEle:当前要操作的元素
-     *    attr:当前需要获取的样式的属性名
+     *    curEle:当前要操作的元素(元素对象)
+     *    attr:当前需要获取的样式的属性名(CSS属性)
      * @return
      *    返回的是指定元素的指定的样式属性的值(把一些自带的单位去掉)
      * by Team on 2015/12/15
@@ -119,25 +119,39 @@
     //        return reg.test(val) ? parseFloat(val) : val;
     //    }
 
-    function getCss(curEle, attr) {
-        var val = null, reg = null;
-        if ("getComputedStyle" in window) {
-            val = window.getComputedStyle(curEle, null)[attr];
-        } else {
-            if (attr === "opacity") {
-                val = curEle.currentStyle["filter"];
-                reg = /^alpha\(opacity=((?:\d|(?:[1-9]\d+))(?:\.\d+)?)\)$/;
-                var tempVal = reg.exec(val);
-                val = tempVal ? tempVal[1] / 100 : 1;
-            } else {
-                val = curEle.currentStyle[attr];
-            }
+//    function getCss(curEle, attr) {
+//        var val = null, reg = null;
+//        if ("getComputedStyle" in window) {
+//        //也可写为if (window.getComputedStyle) {
+         //也可写为if (window.getComputedStyle)
+//            val = window.getComputedStyle(curEle, null)[attr];//属性的变量表示法，这样可以更灵活的表达属性(动态的指定属性名)-->对象的表示方法；
+            //val = window.getComputedStyle(curEle, null).attr;//这是固定的属性表示法，就是表示attr这个属性本身；
+            //val = window.getComputedStyle(curEle, null)[attr]//这是属性的另一种表示方法
+//        } else {
+//            if (attr === "opacity") {
+//                val = curEle.currentStyle["filter"];
+//                reg = /^alpha\(opacity=((?:\d|(?:[1-9]\d+))(?:\.\d+)?)\)$/;
+//                var tempVal = reg.exec(val);
+//                val = tempVal ? tempVal[1] / 100 : 1;
+//            } else {
+//                val = curEle.currentStyle[attr];
+//            }
+//        }
+//        reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
+//        return reg.test(val) ? parseFloat(val) : val;
+//    }
+//
+//    var a = getCss(oDiv, "opacity"); //必须以"opacity"形式传参；
+//    console.log(a);
+    function getCss(curEle,attr){
+        //【if(getComputedStyle/*获得getComputedStyle这个变量的值*/){//如果直接判断，在标准的浏览器中不会报错，因为浏览器这个方法是一个已经存在的内置的function；但是在IE7中不存在这个方法，则会抛出未定义异常；】
+        if(window.getComputedStyle/*获得getComputedStyle这个属性*/){//为什么这个可以：如果变量不可以做读的操作，但是属性没有定义可以做读的操作；
+            return getComputedStyle(curEle,null)[attr];
+        }else{
+            return curEle.currentStyle[attr];
         }
-        reg = /^[+-]?(\d|([1-9]\d+))(\.\d+)?(px|pt|em|rem)$/;
-        return reg.test(val) ? parseFloat(val) : val;
     }
-
-    var a = getCss(oDiv, "opacity");
+    var a=getCss(oDiv,"height")
     console.log(a);
 </script>
 </body>

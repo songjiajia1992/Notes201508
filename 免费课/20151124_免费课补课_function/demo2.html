@@ -32,24 +32,24 @@
     //->这个结构和我们的数组很像,但是arguments不是数组,所以我们也把arguments叫作类数组集合(getElementsByTagName获取的元素集合其实也是类数组集合)
 
     //任意数求和:不管传递进来的是多少个参数我们都能求和
-    function sum() {
-        var total = null;//total=0  0和null的区别:虽然在我们看是都是没有,但是拿种树举例子的话:0->挖了坑里面什么都没种 null->连坑都没挖
+//    function sum() {
+//        var total = null;//total=0  0和null的区别:虽然在我们看是都是没有,但是拿种树举例子的话:0->挖了坑里面什么都没种 null->连坑都没挖
 //        total += 100;//total->100
 //        total += 200;//total->300
 //        total += 300;//total->600
-        for (var i = 0; i < arguments.length; i++) {
+//        for (var i = 0; i < arguments.length; i++) {
             //i=0 第一次循环 total+=arguments[0]
             //i=1 第二次循环 total+=arguments[1]
             //i=2 第三次循环 total+=arguments[2]
             //我们循环时候 i存储的这个数字就是我们当前想获取值的索引
-            total += arguments[i];
-        }
-        console.log(total);
-    }
-    sum(100, 200);
-    sum(100, 200, 300);
-    sum(100, 200, 400, 5000);
-    sum(100);
+//            total += arguments[i];
+//        }
+//        console.log(total);
+//    }
+//    sum(100, 200);
+//    sum(100, 200, 300);
+//    sum(100, 200, 400, 5000);
+//    sum(100);
 </script>
 </body>
 </html>

@@ -52,9 +52,9 @@
             oImg.src = trueImg;
             oImg.onload = function () {
                 oDivImg.src = trueImg;
-                //oDivImg.isLoad = true;//->当真实图片加载完成后我们给它加一个isLoad=true的自定义属性,告诉浏览器我们已经加载完成了
+                oDivImg.isLoad = true;//->当真实图片加载完成后我们给它加一个isLoad=true的自定义属性,告诉浏览器我们已经加载完成了
             };
-            oDivImg.isLoad = true;//->只要我们把真实的地址赋值给oImg.src了说明我们已经开始请求图片了,此时我就记录已加载(防止图片不存在的情况下,放在里面会记录不了isLoad,对于不存在的图片会重复的执行加载)
+//            oDivImg.isLoad = true;//->只要我们把真实的地址赋值给oImg.src了说明我们已经开始请求图片了,此时我就记录已加载(防止图片不存在的情况下,放在里面会记录不了isLoad,对于不存在的图片会重复的执行加载)
         }
     };
 

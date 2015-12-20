@@ -131,11 +131,21 @@
                 oImg.onload = function () {
                     curImg.src = trueImg;
                     oImg = null;
+                    curImg.isLoad = true;//最好放在里面，如果加载失败的话，则再加一个oImg.onerror=function(){},事件来处理。
                 };
-                curImg.isLoad = true;
+
             }
         }
     }
+
+    //1.为什么trueImg必须用oImg.getAttribute方法来获取属性值，而下面的oImg.isLoad就可以直接打点来操作呢？
+    //trueImg是直接写在HTML标签里面的，而isLoad是写在JS中的，
+    //oImg.id,是DHTML规定的，
+    //2.为什么加img标签？
+
+    //onload是因为浏览器是异步机制产生的；
+    // window.onload=function(){}
+    // onerror
 
     window.onscroll = delayImg;
     window.onscroll();//->第一次打开页面先自己手动执行一次onscroll事件

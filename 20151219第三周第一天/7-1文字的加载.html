@@ -29,12 +29,12 @@ var broswerBottom=(document.documentElement.scrollTop||document.body.scrollTop)+
 <script>
 window.onscroll=function(){
 	var boxBottom=offset(div1).t+div1.offsetHeight;//算div1的底边
-	var broswerBottom=(document.documentElement.scrollTop||document.body.scrollTop)+(document.documentElement.clientHeight||document.body.clientHeight);//可视窗口的底边
+	var browserBottom=(document.documentElement.scrollTop||document.body.scrollTop)+(document.documentElement.clientHeight||document.body.clientHeight);//可视窗口的底边
 	var boxTop=offset(div1).t;
 	if(boxTop>broswerBottom){
 		div1.innerHTML="我是原来的文字";
 	}
-	if(boxBottom<broswerBottom){
+	if(boxBottom<browserBottom){
 		div1.innerHTML="我变给你看……";
 	}
 	

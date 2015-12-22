@@ -118,7 +118,7 @@
     function delayImgCode(i) {
         var curImg = imgList[i];
         //->如果当前图片还没有加载真实的我们开始加载
-        if (!curImg.isLoad) {
+//        if (!curImg.isLoad) {
             //->获取的是当前每一张图片自己距离body的上偏移量
             var curImgT = offset(curImg).top + curImg.offsetHeight;
             //->获取浏览器当前底边框距离body的上偏移
@@ -135,7 +135,7 @@
                 };
 
             }
-        }
+//        }
     }
 
     //1.为什么trueImg必须用oImg.getAttribute方法来获取属性值，而下面的oImg.isLoad就可以直接打点来操作呢？

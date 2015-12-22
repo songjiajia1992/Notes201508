@@ -186,7 +186,7 @@ DOM.getElesByClass=function (str){
 }
 
 DOM.addClass=function(ele,strClass){
-	ele.className+=" "+strClass;
+	//ele.className+=" "+strClass;
 	//"ab " "ab ab"
 	var  reg=RegExp("(^| )"+strClass+"( |$)");
 	if(!reg.test(ele.className)){

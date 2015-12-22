@@ -7,7 +7,7 @@ utils.getElementsByClass = function (strClass, context) {
     var reg, ary = [];
     //1、获取指定上下文下的所有的元素标签
     var tagList = context.getElementsByTagName("*");
-    //2、把传递进来的strClass多个样式类名拆分成一个数组,里面包含每一个样式类名
+    //2、把传递进来的strClass多个样式类                                                                                                  名拆分成一个数组,里面包含每一个样式类名
     var classAry = strClass.replace(/(^ +| +$)/g, "").split(/ +/);
     //3、循环所有的标签把具备条件的保存在容器ary中
     for (var i = 0; i < tagList.length; i++) {

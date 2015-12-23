@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>珠峰培训-tween动画演示</title>
+<style type="text/css">
+body{margin:0;height:100%; margin-top:50px; }
+h3{ background:blue; color:white; text-align:center; width:900px; margin:20px auto; ; line-height:40px; overflow:hidden;}
+#outer{ position:relative;  height:220px; width:900px; margin:90px auto 0; } 
+#move{ width:0; height:0;  +border:50px white solid; position:absolute; top:0; left:150px; border-left-color:red; z-index:3;}
+#innerMove{ width:0; height:50px; background:#FC3 url(arror.png) right center no-repeat; font-size:12px; line-height:50px; text-align:center; }
+#div1{ width:900px; height:10px; background:blue; position:absolute; top:100px; left:0; overflow:hidden;}
+#begin{ float:left; height:10px; width:150px; background:green;}
+#t1,#t2,#t3,#end,#t4,#zero{ width:2px; background:#999; position:absolute; white-space:nowrap; font-size:14px; color:red; height:150px; top:-50px; }
+#zero{ left:0;}
+#t1{ left:150px; }
+#t2{ left:225px;  z-index:10; display:none;}
+#t3{ left:300px;  z-index:10; display:none;}
+#t4{ left:525px;  z-index:11; display:none}
+#end{ left:900px; }
+
+#times{ width:820px; margin:0 auto 0; height:50px;}
+#times div{float:left; width:170px; height:50px; line-height:50px; background:#ccc; color:blue; font-size:12px; font-weight:bold; text-align:center; margin:0 10px; cursor:pointer; -webkit-user-select:none;}
+#div2{ width:50px; height:50px; background:red; position:absolute; top:50px; left:150px; z-index:4;}
+</style>
+</head>
+
+<body>
+<h1 style="text-align:center; background:#0C9; color:red; line-height:1.8em;">珠峰培训tween动画-场景演示</h1>
+<h3 id="h3">在1000ms内，从150px的位置，走到900px的位置
+<div id="title">按时间比例的动画</div></h3>
+<div id="outer">
+    <div id="move"><div id="innerMove"></div></div>
+    <div id="zero" style="background:black;">网页的起点:0px</div>
+    <div id="div1"><div id="begin"></div></div>
+    <div id="t1">begin:150px</div>
+    <div id="t2">100ms:225px</div>
+    <div id="t3">200ms:300px</div>
+    <div id="t4">500ms:525px</div>
+    <div id="end">end:900px</div>
+    <div id="div2"></div>
+</div>
+<div id="times">
+<div id="b1">时间消耗100ms</div>
+<div id="b2">时间消耗200ms</div>
+<div id="b3">时间消耗500ms</div>
+<div id="b4">时间消耗1000ms</div>
+</div>
+</body>
+</html>
+<script src="tween.js"></script>
+<script>
+
+  b1.onclick=function(){
+	  innerMove.innerHTML=""
+	 innerMove.style.width=0;
+	 t2.style.display="none";
+	 t3.style.display="none";
+	 t4.style.display="none";
+	 title.innerHTML="运动中……";
+	move(innerMove,{width:75},100,1,function(){
+		t2.style.display="block";
+		this.innerHTML="运动了75px"
+		title.innerHTML="<div style='color:orange'>时间消耗了一千分之一百，那运动的距离也应该是一千分之一百</div>"
+	}) ;
+	div2.onclick=null;
+	div2.style.left="150px";
+	move(div2,{left:150+750/10},100,1);
+}
+ b2.onclick=function(){
+	 innerMove.innerHTML="";
+	 innerMove.style.width=0;
+	 t2.style.display="none";
+	 t3.style.display="none";
+	 t4.style.display="none";
+	 title.innerHTML="运动中……";
+	move(innerMove,{width:150},200,1,function(){
+		t3.style.display="block";
+		this.innerHTML="运动了150px";
+		title.innerHTML="<div style='color:orange'>时间消耗了一千分之两百，那运动的距离也应该是一千分之两百</div>"
+	}) ;
+	div2.onclick=null;
+	div2.style.left="150px";
+	move(div2,{left:150+750/5},200,1);
+}
+ b3.onclick=function(){
+	 innerMove.innerHTML=""
+	 innerMove.style.width=0;
+	 t2.style.display="none";
+	 t3.style.display="none";
+	 t4.style.display="none";
+	 title.innerHTML="运动中……";
+	move(innerMove,{width:375},500,1,function(){
+		t4.style.display="block";
+		this.innerHTML="运动了一半距离：375px";
+		title.innerHTML="<div style='color:orange'>时间消耗了一半，那运动的距离也应该是半</div>"
+	}) ;
+	div2.onclick=null;
+	div2.style.left="150px";
+	move(div2,{left:150+750/2},500,1);
+}
+ b4.onclick=function(){
+	
+	 innerMove.style.width=0;
+	 title.innerHTML="运动中……";
+	 innerMove.innerHTML="我到家啦"
+	move(innerMove,{width:750},1000,1,function(){
+	title.innerHTML="<div style='color:orange'>时间消耗完毕，运动距离完成！</div>";
+	}) ;
+	div2.onclick=null;
+	div2.style.left="150px";
+	move(div2,{left:900},1000,1);
+}
+div2.onclick=function(){
+	move(this,{left:900},1000,1);
+}
+</script>

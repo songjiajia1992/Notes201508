@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; position:absolute; top:150px; left:450px; background:red;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+
+function getCss(ele,attr){
+	//获得ele元素的attr这个CSS属性的值
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr]);
+	}else{
+		return parseFloat(ele.currentStyle[attr]);	
+	}
+}
+
+function animate(ele,attr,target,duration){
+	//让ele这个元素在规定duration时间内，到达target这个目标,attr是指的在那个纬度发生变化
+	var times=0;
+	var interval=15;
+	var begin=getCss(ele,attr);
+	var change=target-begin;
+	
+	function step(){
+		times+=interval;
+		if(times<duration){
+			ele.style[attr]=times/duration*change+begin+"px";
+		}else{
+			window.clearInterval(timer);
+			ele.style[attr]=target+"px";
+		}
+		
+	}
+	var timer=window.setInterval(step,interval);
+	
+}
+div1.onclick=function(){
+	animate(this,"width",400,1000);	
+}
+</script>

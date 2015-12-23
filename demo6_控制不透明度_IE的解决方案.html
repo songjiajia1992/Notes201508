@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>opacity相关的动画：淡入淡出效果-珠峰培训</title>
+<style type="text/css">
+#div1{ width:100px; height:100px;  background:black;  margin:100px auto; opacity:0.5; filter:alpha(opacity=50)}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+//和不透明度-、opacity相关的动画：淡入淡出效果
+//标准浏览器中，opacity的值是在0到1之间的一个值，不带单位
+//在IE6/7/8中，不支持opacity属性，用滤镜样式：filter:alpha(opacity=值),它的值是0到100之间的一个数，相同的效果，IE的滤镜样式中设透明度，要比标准浏览器中的opacity的值大100倍
+
+function getCss(ele,attr){
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr]);
+	}else {//IE的解决方案
+	//IE不支持opacity
+	if(attr=="opacity"){
+		var str=ele.style.filter;//alpha(opacity=50);
+		var reg=/alpha\(opacity=(\d+)\)/;
+		if(reg.test(str)){
+			return RegExp.$1/100
+		}
+	}else{
+		return parseFloat(ele.currrentStyle[attr]);
+	}
+	}
+}
+function fadeInOut(ele,target,duration){
+	var times=0;
+	var interval=15;
+	var begin=getCss(ele,"opacity");
+	var change=target-begin;
+	window.clearInterval(ele.timer);
+	
+	function step(){
+		times+=interval;
+		if(times<duration){
+			var val=times/duration*change+begin;	
+			ele.style.opacity=val
+			ele.style.filter="alpha(opacity="+val*100+")"
+		}else{
+			ele.style.opactiy=target;
+			ele.style.filter="alpha(opacity="+target*100+")"
+			window.clearInterval(ele.timer);
+			
+		}
+	}
+	
+	ele.timer=window.setInterval(step,interval);
+}
+
+div1.onclick=function(){
+	fadeInOut(this,1,1000);
+}
+</script>

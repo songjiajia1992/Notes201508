@@ -44,8 +44,10 @@ function byClass(strClass,eles){//eles表示的是筛选的范围
 }
 var eles=document.body.getElementsByTagName("*");
 
-var strClass="  promoted   ab cd  ";
+var str="  promoted   ab cd  ";
 //先去首尾空格
+str=str.replace(/^ +| +$/g,"");
+alert(str);
 
 function getElesByClass(str){
 	str=str.replace(/^ +| +$/g,"");

@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1,#div2{ width:100px; height:100px; position:absolute; top:50px; left:450px; background:red;}
+#div2{  top:200px; background:green;}
+#redToLeft,#redToRight,#greenToLeft,#greenToRight{ width:300px; height:80px; margin: 50px 95px; float:left;  color:#fff; font-size:24px; text-align:center; line-height:80px; cursor:pointer; background:green;}
+#redToLeft,#redToRight{ margin-top:300px; background:red;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="redToLeft">红盒子向左</div>
+<div id="redToRight">红盒子向右</div>
+<div id="greenToLeft">绿盒子向左</div>
+<div id="greenToRight">绿盒子向右</div>
+</body>
+</html>
+<script>
+
+function getCss(ele,attr){
+	//获得ele元素的attr这个CSS属性的值
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr]);
+	}else{
+		return parseFloat(ele.currentStyle[attr]);	
+	}
+}
+//var timer=null;
+function animate(ele,attr,target,duration){
+	//让ele这个元素在规定duration时间内，到达target这个目标,attr是指的在那个纬度发生变化
+	window.clearInterval(ele.timer);
+	var times=0;
+	var interval=15;
+	var begin=getCss(ele,attr);
+	var change=target-begin;
+	
+	function step(){
+		times+=interval;
+		if(times<duration){
+			ele.style[attr]=times/duration*change+begin+"px";
+		}else{
+			window.clearInterval(ele.timer);
+			ele.style[attr]=target+"px";//修正强制到达终点
+		}
+		
+	}
+	ele.timer=window.setInterval(step,interval);
+	//让运动的元素，保存各自的定时器返回值
+	
+}
+
+redToLeft.onclick=function(){
+	animate(div1,"left",0,3000);//第一个指令
+}
+redToRight.onclick=function(){
+	animate(div1,"left",900,3000);//第二个指令
+}
+
+//第一领导：向左，第二领导向右,动画的积累
+//当第二个指令下达的时候，一定要把第一指令停止
+//
+greenToLeft.onclick=function(){
+	animate(div2,"left",0,3000);//第一个指令
+}
+greenToRight.onclick=function(){
+	animate(div2,"left",900,3000);//第二个指
+}
+//写动画的时候，要注意三点
+//1、到了边界要停止的问题
+//2、边界要处理好，不能不到终点，也不能过界
+//3、动画的积累问题
+
+</script>

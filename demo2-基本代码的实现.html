@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style type="text/css">
+#div1{ width:100px; height:100px; position:absolute; top:150px; left:150px; background:red;}
+</style>
+</head>
+
+<body>
+<div id="div1"></div>
+</body>
+</html>
+<script>
+/*
+	当前消耗的时间/总时间=当前走过的距离/规定的总距离
+	当前走过的距离=（当前消耗的时间/总时间）*规定的总距离
+	当前位置=当前走过的距离+起始的位置	
+	当前位置=（当前消耗的时间/总时间）*总距离+起始位置
+	单步时间
+	
+	function step(){
+		当前的消耗的时间+=单步时间
+		当前位置=（当前消耗的时间/总时间）*总距离+起始位置
+	
+	}
+	window.setInterval(step,单步的时间);
+	
+*/
+
+var duration=900;//规定的总时间
+var times=0;//动画在执行的时间，已经消耗的时间
+var interval=15;//每走一步动画，需要的时间，也就是单步时间
+var target=900;//终点位置，目标值
+var begin=150;//起点位置
+var change=target-begin;//动画需要运动的总距离
+
+var ele=document.getElementById("div1");
+
+function step(){
+	times+=interval;
+	if(times<duration){//多执行一次代码，没有必要
+		
+		ele.style.left=	(times/duration)*change+begin+"px";
+	}else{
+		ele.style.left=target+"px";//强制修正
+		window.clearInterval(timer);
+		//alert("stop");
+		}
+}
+
+var timer=window.setInterval(step,interval);
+//F11 逐语句执行
+//F8 逐断点执行
+
+</script>

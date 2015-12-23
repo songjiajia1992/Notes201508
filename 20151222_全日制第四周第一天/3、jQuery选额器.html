@@ -66,8 +66,8 @@
     $("#ul1>li:eq(0)").css("backgroundColor", "pink");//->让索引为零的变为粉色
 </script>
 <script type="text/javascript">
-    //var oUl = document.getElementById("ul1");//->获取的是原生的JS元素对象
-    //var $ul = $("#ul1");//->获取的是一个jQuery实例->jQuery对象(和我们的类数组非常的相似)
+    var oUl = document.getElementById("ul1");//->获取的是原生的JS元素对象
+    var $ul = $("#ul1");//->获取的是一个jQuery实例->jQuery对象(和我们的类数组非常的相似)
 
     //1、原生JS对象和jQuery对象是不一样的
     //console.log(oUl.childNodes);
@@ -92,7 +92,9 @@
     //3、关于选择器的一些私有的属性?
     //$ul.selector ->获取选择器类型
     //$ul.context ->获取当前的上下文
-    //$ul.length ->获取集合的长度   $ul.size()等同于length的操作
+    //$ul.length ->获取集合的长度   $ul    .size()等同于length的操作
+
+
 </script>
 </body>
 </html>

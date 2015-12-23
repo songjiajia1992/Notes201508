@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+    body{background:lightblue; }
+    h1{ text-align: center;}
+    .tip{color:red; font-weight: bold;}
+    #content li{margin-bottom: 10px; margin-top: 10px;}
+    #content{width: 700px; margin: 0 auto; color: black; background:white; border-radius: 10px; font-size: 24px; padding: 10px;}
+    #content p{font-size: 16px; }
+    #content h3{ color: blue;}
+    </style>
+</head>
+<body>
+<div id="content">
+<ul>
+    <h1>按时间比完成动画之匀速动画</h1>
+    <h2 style="text-align: right; color: orangered;font-size:22px;">珠峰培训tween动画 &nbsp;&nbsp;&nbsp;&nbsp;</h2>
+    <h3>场景：</h3>
+    <h4 style="text-indent:2em;">网页中的一个DIV，它目前的位置是150px，现在计划使这个DIV在1000毫秒的时间内，匀速的达到900px的终点位置</h4>
+<li>第一个问题，运动的距离：从开始到目的地的总距离是多少？</li>
+	<p>不是900px，900px是终点，而是终点-起点：900-150=750</p>
+    <p style="background:blue; color:#fff; font-weight:bold; line-height:2em; padding:0 20px;">注意这里面的三个值：1、终点，2、起点，3、运动的距离=终点-起点</p>
+    <li>第二个问题：<span class="tip">如何计算当前运动了的距离和当前到达的位置</span></li>
+    
+    <div class="tip" style="font-size:16px; line-height:2em;"><span style="background:blue; color:#fff; line-height:2em; padding:10px; margin:0 5px;">首先明确：</span>当前运动了的距离和当前到达的位置不是一个概念</div>
+    <li>要求1000毫秒到达目的地，请问：100毫秒走了多少，200毫秒，500毫秒，……</li>
+    <li><span class="tip"> 按比例就是：</span>1/10,1/5,1/2</li>
+    
+    <li><span class="tip"> 得出最基本公式：</span>当前运动的距离=当前消耗的时间/总时间*(总距离)
+        
+    </li>
+    <li><span class="tip"> 得出最终公式：</span>当前的位置=当前消耗的时间/总时间*(总距离)+起始位置</li>
+    <li>第三个问题：再远的路，也总要一小步一小步的走：<span>单步时间</span></li>
+    
+
+    <h3>建立编程模型，用JavaScript代码实现</h3>
+    <ol>
+        <li>总时间：duration</li>
+        <li>单步间隔时间：interval</li>
+        <li>当前已经走了的时间：times，是n次interval之和</li>
+        <li>起位置：begin</li>
+        <li>终止位置：target</li>
+        <li>实际运动的距离：change(target-begin)</li>
+        <li>当前的位置=当前消耗的时间/总时间*(总距离)+起始位置</li>
+        <li>即：当前的位置=times/duration*change+begin</li>
+    </ol>
+
+</ul>
+</div>
+</body>
+</html>

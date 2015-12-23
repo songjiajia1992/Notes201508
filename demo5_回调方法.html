@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>回调方法</title>
+<style type="text/css">
+div{ width:100px; height:100px; position:absolute; top:10px; left:20px; background:red; color:white; font-size:36px; line-height:100px; text-align:center; font-weight:bold; }
+#green{  top:140px; background:green;}
+#yellow{ top:260px; background:yellow;}
+#blue{ top:380px; background:blue;}
+#black{ top:500px; background:black;}
+</style>
+<script src="xxx.js"></script>
+</head>
+
+<body>
+<img src="xxx.gif">
+<div id="red">小红</div>
+<div id="green">小绿</div>
+<div id="yellow">小黄</div>
+<div id="blue">小蓝</div>
+<div id="black">小黑</div>
+
+</body>
+</html>
+<script>
+
+function getCss(ele,attr){
+	//获得ele元素的attr这个CSS属性的值
+	if(window.getComputedStyle){
+		return parseFloat(getComputedStyle(ele,null)[attr]);
+	}else{
+		return parseFloat(ele.currentStyle[attr]);	
+	}
+}
+
+function animate(ele,attr,target,duration,callback){
+	//让ele这个元素在规定duration时间内，到达target这个目标,attr是指的在那个纬度发生变化
+	window.clearInterval(ele.timer);
+	var times=0;
+	var interval=15;
+	var begin=getCss(ele,attr);
+	var change=target-begin;
+	
+	function step(){
+		times+=interval;
+		if(times<duration){//正常的运动
+			ele.style[attr]=times/duration*change+begin+"px";
+		}else{//到达目标
+			window.clearInterval(ele.timer);
+			ele.style[attr]=target+"px";//修正强制到达终点
+			//ele.style.backgroundColor="purple";
+			if(typeof callback == "function"){
+				//callback();	
+				callback.call(ele);
+			}
+		}
+		
+	}
+	ele.timer=window.setInterval(step,interval);
+	//让运动的元素，保存各自的定时器返回值
+	
+}
+	//回调方法：什么是回调方法，当一件完成之后，再去做别一件。
+	//一般的代码就是按顺序执行的
+	//但在不按顺序的代码中，可能就会出现混乱。那什么样的代码不按顺序执行呢？
+/*	console.log("a");
+	console.log("b");
+	console.log("c");*/
+	//以上代码在同一个队列里，按顺序执行。这样的叫“同步”执行
+	
+	//还有不同步执行的代码，叫“异步”执行，比如说：
+	console.log("a");
+	setTimeout(function(){console.log("b")});
+	window.onload=function(){ console.log("c")};
+	console.log("d");
+	
+	//浏览器天生的异步机制:request
+	
+	//我们这里学习的动画，同样也是“异步”执行
+	//因为动画是由定时器来驱动的。
+	
+	//需求：当红色div动画完成之后，将其背景色变为紫色
+	
+	/*function changeColor1(){
+		red.style.backgroundColor="purple";	
+		//animate(red,"height",400,800);
+	}
+	function changeColor2(){
+		green.style.backgroundColor="purple";	
+		//animate(red,"height",400,800);
+	}
+	
+	function changeColor3(){
+		yellow.style.backgroundColor="purple";	
+		//animate(red,"height",400,800);
+	}
+	
+	
+	red.onclick=function(){
+		animate(this,"left",800,1200,changeColor1);
+		//this.style.backgroundColor="purple";
+	}
+	green.onclick=function(){
+		animate(this,"left",800,1200,changeColor2);
+		//this.style.backgroundColor="purple";
+	}
+	
+	yellow.onclick=function(){
+		animate(this,"left",800,1200,changeColor3);
+		//this.style.backgroundColor="purple";
+	}*/
+	function changeColor(){
+		this.style.backgroundColor="purple";	
+	}
+	
+	var eles=document.getElementsByTagName("div");
+	for(var i=0;i<eles.length;i++){
+		eles.item(i).onclick=function(){
+			animate(this,"left",800,1200,changeColor);
+		}
+	}
+
+</script>

@@ -58,7 +58,7 @@
     //curL>target ->向左走
     //curL<target ->向右走
     function move(target) {
-//        ~function _move() {
+        ~function _move() {
             window.clearTimeout(oDiv.timer);
             var curL = utils.getCss(oDiv, "left");
             if (curL > target) {//->向左走
@@ -76,8 +76,8 @@
             } else {
                 return;
             }
-            oDiv.timer = window.setTimeout(move, 10);
-//        }();
+            oDiv.timer = window.setTimeout(_move, 10);
+        }();
     }
 
     //给两个按钮绑定点击事件,当执行的时候我们把目标值传递给move实现我们的运动

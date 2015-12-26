@@ -45,14 +45,14 @@
 
     //2、each
     //在jQuery原型上写的each ->遍历获取的jQuery元素集合用的
-    //    $("#ul1>li").each(function (index, item) {
-    //        //index:每一次遍历的索引
-    //        //item:每一次遍历的当前的li原生JS对象
-    //        //$(this)->每一次遍历的时候,我们获取的当前jQuery对象-->$(item)
-    //        if (index % 2 === 0) {
-    //            $(this).css("background", "red");
-    //        }
-    //    });
+        $("#ul1>li").each(function (index, item) {
+            //index:每一次遍历的索引
+            //item:每一次遍历的当前的li原生JS对象
+            //$(this)->每一次遍历的时候,我们获取的当前jQuery对象-->$(item)
+            if (index % 2 === 0) {
+                $(this).css("background", "red");
+            }
+        });
 
     //在jQuery对象上增加的each方法 ->遍历数组中的每一项的
     //    $.each([12, 23, 34], function (index, item) {

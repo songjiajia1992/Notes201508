@@ -47,7 +47,7 @@ var animate = (function () {
         }
     };
 
-    //zhufengEffect:珠峰培训TWEEN算法公式
+    //【zhufengEffect:珠峰培训TWEEN算法公式】
     //t->times 已经运动的时间, b->begin 开始的位置, c->change 总运动距离(结尾的位置-开始的位置), d->duration 总运动时间
     var zhufengEffect = {
         //匀速
@@ -229,7 +229,8 @@ var animate = (function () {
 
     //实现我们的animate动画库
     return function (curEle, options, duration, effect, callback) {
-        //init effect
+        //init effec、t
+
         var fnEffect = zhufengEffect.Linear;//->默认是匀速的运动
         if (typeof effect === "number") {
             //1->Linear 2->Elastic-easeOut 3->Back-easeOut 4->Bounce-easeOut 5->Expo-easeIn

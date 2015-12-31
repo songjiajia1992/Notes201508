@@ -9,11 +9,11 @@
  * by Team on 2015/12/23
  */
 var animate = (function () {
-
-    //getCss:获取当前元素的指定样式值
+    var flag="getComputedStyle" in window
+    //getCss:获取当前元素的指定样式值:
     var getCss = function (curEle, attr) {
         var val, reg;
-        if ("getComputedStyle" in window) {
+        if (flag) {
             val = window.getComputedStyle(curEle, null)[attr];
         } else {
             if (attr === "opacity") {

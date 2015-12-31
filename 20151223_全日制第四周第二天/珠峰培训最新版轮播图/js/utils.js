@@ -17,13 +17,13 @@ var utils = {
     },
     //setCss:设置元素的样式
     setCss: function (curEle, attr, value) {
-        var reg = /^(width|height|top|left|right|bottom|((margin|padding)(Left|Top|Right|Bottom)?))$/;
+        var reg = /^(width|height|top|left|right|bottom|((margin|padding)(Left|Top|Right|Bottom)?))$/i;//给传进来的数加一个默认的单位；
         if (attr === "opacity") {
             if (value >= 0 && value <= 1) {
                 curEle["style"]["opacity"] = value;
                 curEle["style"]["filter"] = "alpha(opacity=" + value * 100 + ")";
             }
-        } else if (attr === "float") {
+        } else if (attr === "float") {//处理兼容性问题；-为什么不太清楚。。。
             curEle["style"]["cssFloat"] = value;
             curEle["style"]["styleFloat"] = value;
         } else if (reg.test(attr)) {

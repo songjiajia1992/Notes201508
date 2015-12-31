@@ -212,7 +212,7 @@ function animate(ele,/* attr,target */oTarget,duration,effect,callback){
 			fnEffect=zhufengEffect.zfLinear;
 		}else if(effect.length==2){
 			fnEffect=zhufengEffect[effect[0]][effect[1]]
-			//zhufengEffect["zfBounce"]["easeOut"];
+
 		}
 		
 	}else if(typeof effect=="function"){
@@ -253,13 +253,13 @@ function animate(ele,/* attr,target */oTarget,duration,effect,callback){
 				var begin=oBegin[attr];//对应58行和63，
 				var change=oChange[attr];
 				var value=fnEffect(times,begin,change,duration);
+                //zhufengEffect["zfBounce"]["easeOut"];
 				setCss(ele,attr,value);			
 			}
 		}else{
 			for(var attr in oTarget){
 				var target=oTarget[attr];
 				setCss(ele,attr,target);//最后的校正
-				
 			}
 			window.clearInterval(ele.timer);
 			ele.timer=null;

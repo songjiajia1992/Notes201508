@@ -5,11 +5,11 @@ window.onload = function () {
     $(".inner img").each(function () {
         var _this = this;
         var trueImg = $(this).attr("trueImg");
-
         var oImg = new Image;
         oImg.src = trueImg;
         oImg.onload = function () {
             $(_this).prop("src", trueImg).fadeIn(500);
+            //prop是改变内置的属性
         };
     });
 };

@@ -69,17 +69,12 @@
 
 <script type="text/javascript">
     var box = document.getElementById("box");
-<<<<<<< HEAD
-    var boxL = box.offsetLeft +box.clientLeft, boxT = box.offsetTop+ box.clientTop;
-=======
     var boxL = box.offsetLeft + box.clientLeft, boxT = box.offsetTop + box.clientTop;
->>>>>>> 72e1ee8ceb8870db4faba306cdaa3f6833c336b9
-
     var boxBig = document.getElementById("boxBig");
     var boxBigImg = boxBig.getElementsByTagName("img")[0];
 
 
-    //计算mark盒子的位置的
+    //计算mark盒子的位置的,mark盒子是相对大盒子定位的;
     function computedMark(e, mark) {
         var left = e.clientX - boxL - (mark.offsetWidth / 2);
         var top = e.clientY - boxT - (mark.offsetHeight / 2);

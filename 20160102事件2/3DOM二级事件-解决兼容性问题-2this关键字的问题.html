@@ -21,7 +21,7 @@ function fn1(){alert(this.innerHTML);
 		unbind(ele,"click",fn1);
 		unbind(ele,"click",fn2);//在移除fn2的时候，fn2还没有执行呢。来看：当事件触发的同时，能不能移除绑定在事件上的方法
 		//出现了各种浏览器不同结果(chrome的45版会有严重的bug)
-	}
+}
 }
 function fn2(){alert(2)}
 function fn3(){alert(3)}

@@ -19,16 +19,17 @@
 var innerHTML="window";
 var ele=document.getElementById("div1");
 function fn1(){alert(this.innerHTML);
-	counter++;
-	if(counter==2){
-		off(ele,"click",fn1);
-		off(ele,"click",fn2);
-	}
+
 }
 function fn2(){alert(2)}
 function fn3(){alert(3)}
 var counter=0;
-function fn4(){alert(4)}
+function fn4(){alert(4)
+	counter++;
+	if(counter==2){
+		off(ele,"click",fn1);
+		off(ele,"click",fn2);
+	}}
 function fn5(e){alert(5);
 	/*counter++;
 	if(counter==2){

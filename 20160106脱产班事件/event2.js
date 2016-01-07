@@ -9,8 +9,6 @@ function on(ele,type,fn){//如果事件类型是以self为前缀的，则说明�
 		}
 		a.push(fn);
 		return;//处理完了自定义方法则结束。不需要再去当系统事件再执行了。
-	
-	
 	}
 	
 	if(ele.addEventListener){
@@ -19,10 +17,10 @@ function on(ele,type,fn){//如果事件类型是以self为前缀的，则说明�
 	}
 	if(!ele["onEvent"+type]){
 		ele["onEvent"+type]=[];
-		ele.attachEvent("on"+type,function(){run.call(ele)})
+		ele.attachEvent("on"+type,function(){run.call(ele)});
 		//ele.attachEvent("on"+type,processThis(ele,run));
 	}
-	var a=ele["onEvent"+type]
+	var a=ele["onEvent"+type];
 	for(var i=0;i<a.length;i++){
 		if(a[i]==fn)return;	
 		}
@@ -46,11 +44,10 @@ function run(){
 	if(typeof a[i]=="function"){
 		a[i].call(this,e);//把事件对象e传给数组里的方法
 		}else{
-			a.splice(i,1)
+			a.splice(i,1);
 			i--;
 			}
 	}
-			
 }
 
 function off(ele,type,fn){
@@ -66,10 +63,9 @@ function off(ele,type,fn){
 				break;
 				
 			}
-				
+
 		}
 	}
-	
 }
 
 /*
@@ -80,7 +76,7 @@ function off(ele,type,fn){
 	i==1
 */
 function processThis(obj,fn){
-				return function(e){fn.call(obj,e)}	
+	return function(e){fn.call(obj,e)}
 }
 
 //所谓的通知，就是当A（拖拽模块）执行的时候，去和事件标识符对应的数组里遍历执行相关方法的过程

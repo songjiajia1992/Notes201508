@@ -66,12 +66,11 @@ function getSpeed(e){
 		}else{
 			this.style.left=this.offsetLeft+this.speed+"px";
 		}
-		this.speed*=.97
+		this.speed*=.97;
 		
 		if(Math.abs(this.speed)>=0.5){
 			this.flyTimer=window.setTimeout(processThis(this,fly),15);
 		}
-		
 	}
 
 
@@ -95,5 +94,4 @@ function drop(){
 	if(this.flag<2){
 		this.dropTimer=window.setTimeout(processThis(this,drop),15);
 	}
-	
 }

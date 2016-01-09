@@ -32,7 +32,7 @@ EventEmitter.prototype.on=function(type,fn){
 	}
 	a.push(fn);
 	
-}
+};
 EventEmitter.prototype.fire=function(type){//相当于学过的run方法
 	var a=this["event"+type];
 	if(a){

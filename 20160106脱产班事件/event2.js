@@ -32,9 +32,9 @@ function run(){
 	var e=window.event;
 	var type=e.type;
 	if(!e.target){
-		e.target=e.srcElement
-		e.stopPropagation = function(){ e.cancelBubble = true;}
-		e.preventDefault = function(){ e.returnValue = false;}
+		e.target=e.srcElement;
+		e.stopPropagation = function(){ e.cancelBubble = true;};
+		e.preventDefault = function(){ e.returnValue = false;};
 		e.pageX = e.clientX +(document.documentElement.scrollLeft||document.body.scrollLeft);
 		e.pageY = e.clientY +(document.documentElement.scrollTop||document.body.scrollTop);
 		}
